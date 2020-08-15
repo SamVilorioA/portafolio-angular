@@ -7,14 +7,25 @@ import { InfoPagina } from '../interfaces/info-pagina.interface';
 })
 export class InfoPaginaService {
   info: InfoPagina = {};
-  cargada = false;
+  loaded = false;
+  skills: any = {}; //Skills is the name of the exported interface, not the file
 
   constructor(private http: HttpClient) {
-    //console.log('Pagina de servicios cargada!');
+    this.loadInfo();
+    this.loadSkills();
+   }
+
+   private loadInfo(){
     this.http.get('assets/data/data-pagina.json').subscribe( (resp: InfoPagina)=>{
-      this.cargada = true;
+      this.loaded = true;
       this.info = resp;
-      //console.log(resp);
     });
+   }
+
+   private loadSkills(){
+     this.http.get('https://angular-html-2cca0.firebaseio.com/Skills.json').subscribe( (resp:any)=>{
+       this.skills = resp;
+       console.table(resp);
+     });
    }
 }
