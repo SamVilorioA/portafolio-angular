@@ -1,3 +1,8 @@
+#svg
+  svg path,
+  svg rect{
+    fill: orange;
+  }
 /* You can add global styles to this file, and also import other style files */
 .animated {
     -webkit-animation-duration: 0.6s;

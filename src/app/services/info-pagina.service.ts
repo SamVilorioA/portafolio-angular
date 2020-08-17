@@ -8,7 +8,7 @@ import { InfoPagina } from '../interfaces/info-pagina.interface';
 export class InfoPaginaService {
   info: InfoPagina = {};
   loaded = false;
-  skills: any = {}; //Skills is the name of the exported interface, not the file
+  skills: any[] = []; 
 
   constructor(private http: HttpClient) {
     this.loadInfo();
@@ -25,7 +25,6 @@ export class InfoPaginaService {
    private loadSkills(){
      this.http.get('https://angular-html-2cca0.firebaseio.com/Skills.json').subscribe( (resp:any)=>{
        this.skills = resp;
-       console.table(resp);
      });
    }
 }
